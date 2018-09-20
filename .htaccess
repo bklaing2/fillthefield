@@ -1,0 +1,7 @@
+# Use PHP56
+AddHandler application/x-httpd-php56 .php
+
+Options +MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
