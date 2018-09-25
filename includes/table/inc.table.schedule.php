@@ -59,7 +59,7 @@ if(@mysqli_num_rows($res_sched) > 0)
 
 		if($page == 1.0)
 		{
-			echo '<td><input type="number" max="40" onclick="row_click(\''.$row_sched["id"].'\', \''.$tick_type.'\')"';
+			echo '<td><input type="number" max="50" onclick="row_click(\''.$row_sched["id"].'\', \''.$tick_type.'\')"';
 
 			if($game_time < $time_threshold)
 				echo ' disabled';
