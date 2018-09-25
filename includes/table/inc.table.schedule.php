@@ -23,10 +23,7 @@ if(@mysqli_num_rows($res_sched) > 0)
 		$game_time = strtotime($row_sched["day"]);
 		$date = date_create($row_sched["day"]);
 
-		// if($game_time < $time_threshold)
-		// 	$sql_tick_game = "SELECT id FROM tickets_old WHERE game = '".$row_sched["id"]."' AND user_give <> '0'"; // AND user_get = '0';";
-		// else
-			$sql_tick_game = "SELECT id FROM tickets WHERE game = '".$row_sched["id"]."' AND user_give <> '0';"; // AND user_get = '0';";
+		$sql_tick_game = "SELECT id FROM tickets WHERE game = '".$row_sched["id"]."' AND user_give <> '0';";
 		$res_tick_game = mysqli_query($conn, $sql_tick_game);
 
 		if($page != 0.0)
@@ -59,6 +56,16 @@ if(@mysqli_num_rows($res_sched) > 0)
 		}
 
 		echo '<td>'.date_format($date,"M. j").'</td><td>'.$row_sched["opponent"].'</td>';
+
+		if($page == 1.0)
+		{
+			echo '<td><input type="number" max="40" onclick="row_click(\''.$row_sched["id"].'\', \''.$tick_type.'\')"';
+
+			if($game_time < $time_threshold)
+				echo ' disabled';
+
+			echo '></td>';
+		}
 
 		if($page == 0.0)
 			echo '<td>'.@mysqli_num_rows($res_tick_game).'</td>';
